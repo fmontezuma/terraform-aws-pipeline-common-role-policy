@@ -1,5 +1,5 @@
 resource "aws_iam_role" "codebuild" {
-  name = "codebuild"
+  name = "${var.project}-codebuild"
 
   assume_role_policy = <<EOF
 {
@@ -18,7 +18,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "codebuild-logandcode" {
-  name = "codebuild-logandcode"
+  name = "${var.project}-codebuild-logandcode"
   role = "${aws_iam_role.codebuild.name}"
 
   policy = <<POLICY
@@ -59,7 +59,7 @@ POLICY
 }
 
 resource "aws_iam_role_policy" "codebuild-ecr" {
-  name = "codebuild-ecr"
+  name = "${var.project}-codebuild-ecr"
   role = "${aws_iam_role.codebuild.name}"
 
   policy = <<POLICY

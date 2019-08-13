@@ -1,5 +1,5 @@
 resource "aws_iam_role" "codepipeline_role" {
-  name = "codepipeline-pipeline"
+  name = "${var.project}-codepipeline-pipeline"
 
   assume_role_policy = <<EOF
 {
@@ -18,7 +18,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "codepipeline_policy" {
-  name = "codepipeline-policy"
+  name = "${var.project}-codepipeline-policy"
   role = "${aws_iam_role.codepipeline_role.id}"
   policy = "${file("${path.module}/pipeline-policy.json")}"
 }
