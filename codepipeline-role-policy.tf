@@ -8,7 +8,10 @@ resource "aws_iam_role" "codepipeline_role" {
     {
       "Effect": "Allow",
       "Principal": {
-        "Service": "codepipeline.amazonaws.com"
+        "Service": [
+          "codepipeline.amazonaws.com",
+          "events.amazonaws.com"
+        ]
       },
       "Action": "sts:AssumeRole"
     }
